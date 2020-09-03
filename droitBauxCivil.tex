@@ -1,0 +1,1518 @@
+\documentclass[10pt,a4paper,twoside]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{array, tabularx, multirow, booktabs} % Amélioration de
+	% l'environnement tabular, calculer automatiquement la taille des colonnes et
+	% permettre la fusion de ligne et facilite la production de tables telles
+	% qu’elles apparaissent (devraient apparaître) dans les livres et journaux
+	% scientifiques publiés
+\usepackage{chemist, eurosym, numprint, xfrac}
+\usepackage{color, graphicx}
+\usepackage{coolstr, ifthen, xspace, xstring}
+\usepackage{csquotes, enumitem, soulutf8}
+% à passer en dernier
+\usepackage[french]{isodate, babel}
+\usepackage{hyperref}
+
+\author{%
+Frédérique  \nom{Cohet}\\%
+Maître de Conférences de l’Université Panthéon-Assas Paris \II
+}
+\title{%
+Droit des Baux Civils\\
+Master 2 << Droit immobilier et de la construction >>}
+\date{2020}
+
+\hypersetup{%
+%	pdfinfo={%
+%		Title={Droit de l'Urbanisme et de l'Aménagement}%
+%		, Subject={}%Marché \@ReferenceMarche}%
+%		, Author={Samuel Déom}%
+%		%, Keywords={}%\@ReferenceMarche}%
+%	}%
+	, colorlinks = true% colore, plutot qu'encadre, les liens hypertexte
+	, linkcolor = black% colore les liens internes en noir
+	, urlcolor = black% colore les liens externes en noir
+	, breaklinks = true% autorise les liens à être étendus sur plusieurs lignes
+}
+
+% Ecrire du texte juridique
+\makeatletter
+\newcommand*{\assPlen}{\@ifstar{\mbox{ass. plén.}\xspace}{assemblée
+	plénière\xspace}}
+\newcommand*{\chMixte}{\@ifstar{ch. mixte\xspace}{chambre mixte\xspace}}
+\newcommand*{\civUn}{\@ifstar{civ. 1\iere{}\xspace}{première chambre
+	civile\xspace}}
+\newcommand*{\civDeux}{\@ifstar{civ. 2\ieme{}\xspace}{deuxième chambre
+	civile\xspace}}
+\newcommand*{\civTrois}{\@ifstar{civ. 3\ieme{}\xspace}{troisième chambre
+	civile\xspace}}
+\newcommand*{\CourDeCas}{\@ifstar{Cass.\xspace}{Cour de Cassation\xspace}}
+\newcommand*{\CA}{\@ifstar{CA\xspace}{Cour d'Appel\xspace}}
+\newcommand*{\CAA}{\@ifstar{CAA\xspace}{Cour Administrative d'Appel\xspace}}
+\newcommand*{\CE}{\@ifstar{CE\xspace}{Conseil d'État\xspace}}
+\newcommand*{\CJCE}{\@ifstar{CJCE\xspace}{Cour de justice des Communautés
+	européennes\xspace}}
+\newcommand*{\CJUE}{\@ifstar{CJUE\xspace}{Cour de justice de l'Union
+	européenne\xspace}}
+\newcommand*{\jurisCourDeCas}{\@ifstar{\jurisCourDeCasStared%
+	}{\jurisCourDeCasNotStared}}
+\newcommand*{\jurisCourDeCasStared}[3][]{\CourDeCas* #2*,
+	\printdate{#3}\ifthenelse{\equal{#1}{}}{}{, \no#1}} % Numéro de chambre, date
+	% et en option no de pourvoi
+\newcommand*{\jurisCourDeCasNotStared}[3][]{\CourDeCas #2,
+	\printdate{#3}\ifthenelse{\equal{#1}{}}{}{, \no#1}} % Numéro de chambre, date
+	% et en option no de pourvoi
+\newcommand*{\jurisCE}[2][]{\CE*, \printdate{#2}\ifthenelse{\equal{#1}{}}{}{,
+	\no#1}} % Date et en option no de pourvoi
+\newcommand*{\jurisCA}[2]{\CA* #1, \printdate{#2}} % Ville, date
+\newcommand*{\jurisCAA}[3][]{\CAA* #2,
+	\printdate{#3}\ifthenelse{\equal{#1}{}}{}{, \no#1}} % Ville, date, et en
+	% option no de pourvoi
+
+\newcommand*{\refArticle}[2]{\mbox{#1.\,#2}}
+
+\newcommand*{\articleCodifie}{\@ifstar{\articleCodifieStared%
+	}{\articleCodifieNotStared}}
+\newcommand*{\articleCodifieStared}[2]{\mbox{art.~\refArticle{#1}{#2}}}
+\newcommand*{\articleCodifieNotStared}[2]{article~\refArticle{#1}{#2}}
+\makeatother
+\newcommand*{\articlesCodifies}[2]{articles~\refArticle{#1}{#2}}
+\newcommand*{\ArticleCodifie}[2]{Article~\refArticle{#1}{#2}}
+\newcommand*{\ArticlesCodifies}[2]{Articles~\refArticle{#1}{#2}}
+\newcommand*{\articlesCodifiesEtSuivants}[2]{\articlesCodifies{#1}{#2} et
+	suivants}
+\newcommand*{\articleDu}[3][]{\ifthenelse{\equal{#1}{}}{article~\mbox{#2}%
+	}{\articleCodifie{#1}{#2}} du #3}
+\newcommand*{\articlesDu}[3][]{\ifthenelse{\equal{#1}{}}{articles~\mbox{#2}%
+	}{\articlesCodifies{#1}{#2}} du #3}
+\newcommand*{\articlesDuEtSuivants}[3][]{\ifthenelse{\equal{#1}{}%
+	}{articles~\mbox{#2}}{\articlesCodifies{#1}{#2}} et suivants du #3}
+\newcommand*{\ArticleDu}[3][]{\ifthenelse{\equal{#1}{}}{Article~\mbox{#2}%
+	}{\ArticleCodifie{#1}{#2}} du #3}
+\newcommand*{\ArticlesDu}[3][]{\ifthenelse{\equal{#1}{}}{Articles~\mbox{#2}%
+	}{\ArticlesCodifies{#1}{#2}} du #3}
+\newcommand*{\ArticlesDuEtSuivants}[3][]{\ifthenelse{\equal{#1}{}%
+	}{Articles~\mbox{#2}}{\ArticlesCodifies{#1}{#2}} et suivants du #3}
+
+% Les codes et leur abbréviation (tiré de )
+\makeatletter
+\newcommand*{\casf}{\@ifstar{CASF}{Code de l'action sociale et des
+	familles}\xspace}
+\newcommand*{\cassur}{\@ifstar{\mbox{C.~assur.}\xspace}{Code des
+	assurances\xspace}}
+\newcommand*{\cch}{\@ifstar{CCH}{Code de la construction et de
+	l'habitation}\xspace}
+\newcommand*{\cciv}{\@ifstar{\mbox{C.~civ.}}{Code civil}\xspace}
+\newcommand*{\ccom}{\@ifstar{\mbox{C.~com.}}{Code du commerce}\xspace}
+\newcommand*{\cconsom}{\@ifstar{\mbox{C.~consom.}}{Code de la
+	consommation}\xspace}
+\newcommand*{\ccp}{\@ifstar{CCP}{Code de la commande publique}\xspace}
+\newcommand*{\cgi}{\@ifstar{CGI}{Code général des impôts}\xspace}
+\newcommand*{\cpc}{\@ifstar{CPC}{Code de procédure civile}\xspace}
+\newcommand*{\cpen}{\@ifstar{\mbox{C.~pén.}}{Code pénal}\xspace}
+\newcommand*{\cpi}{\@ifstar{CPI}{Code de la propriété intellectuelle}\xspace}
+\newcommand*{\cpp}{\@ifstar{CPP}{Code de procédure pénale}\xspace}
+\newcommand*{\crur}{\@ifstar{\mbox{C.~rur.}}{Code rural et de la pêche
+	maritime}\xspace}
+\newcommand*{\curb}{\@ifstar{\mbox{C.~urb.}}{Code de l'urbanisme}\xspace}
+\makeatother
+
+\newcommand*{\nom}[1]{\textsc{#1}}
+\newcommand*{\pourcent}[1]{\nombre{#1}~\%}
+\newcommand*{\montant}[1]{\mbox{\nombre{#1}~\euro}}
+\newcommand*{\milliard}[1]{\mbox{\nombre{#1}~M~\euro}}
+\newcommand*{\surface}[1]{\nombre{#1}~\metreCarre}
+
+% Sans arguments
+\makeatletter
+\newcommand*{\bofip}{\@ifstar{BOFiP}{bulletin officiel des finances
+	publiques}\xspace}
+\makeatother
+\newcommand*{\cad}{c'est-à-dire\xspace}
+\makeatletter
+\newcommand*{\colloc}{\@ifstar{collectivité locale}{collectivités
+	locales}\xspace}
+\makeatother
+\newcommand*{\dmto}{droits de mutation à titre onéreux\xspace}
+\newcommand*{\etc}{\emph{etc}.\xspace}
+\newcommand*{\II}{\textsc{ii}\xspace}
+\newcommand*{\III}{\textsc{iii}\xspace}
+\newcommand*{\IR}{impôt sur le revenu\xspace}
+\newcommand*{\JP}{jurisprudence\xspace}
+\newcommand*{\metreCarre}{m\up{2}}
+\newcommand*{\NP}{nu-propriétaire\xspace}
+\newcommand*{\OP}{ordre publique\xspace}
+\newcommand*{\PV}{procès-verbal\xspace}
+\newcommand*{\tva}{TVA\xspace}
+
+
+
+% Environnement
+\newenvironment*{exemple}{Par exemple :\newline\itshape}{}
+\newenvironment*{conseil}{{\bfseries Conseil :}\smallbreak\itshape}{}
+\newenvironment*{casPratique}[2][]%
+{\stepcounter{casPratiqueCtr}{\bfseries Cas pratique \no
+	\arabic{casPratiqueCtr}}
+	\ifthenelse{\equal{#1}{}}{}{\itshape #1}
+	{#2}}%
+{}
+\newenvironment*{focus}[1][]{\medskip \textbf{#1} \newline \itshape}{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Généralités}
+
+	\paragraph{Un contrat nommé} Le contrat de bail est un contrat nommé, c'est un
+		contrat qui est spécialement régit par le \cciv aux articles 1709 à 1778.
+	Mais c'est un contrat qui peut en plus être soumis à une réglementation
+		complémentaire, qui relève du \enquote{droit spécial des baux} --- qui pour
+		l'essentiel est une réglementation d'\OP.
+
+	\paragraph{Le contrat de bail} L'\articleDu{1709}{\cciv} dispose qu'un contrat
+		de bail est un \enquote{contrat par lequel l’une des parties s’oblige à
+		faire jouir l’autre d’une chose pendant un certain temps, et moyennant un
+		certain prix que celle ci s’oblige à lui payer.}
+	Cette définition permet la qualififcation d'un contrat en contrat de bail et
+		met en avant ses principales caractéristiques :
+		\begin{enumerate}
+			\item fourniture de la jouissance d’un bien pour une durée
+				déterminée\footnote{C'est-à-dire qui ne peut pas être perpétuelle} ;
+			\item mise à disposition à usage exclusif\footnote{Précisé par la \JP
+				\jurisCourDeCas[04-19736]{\civTrois*}{11/01/2006}} ;
+			\item paiement d’un loyer\footnote{À défaut : commodat ou prêt à usage.
+				L'absence de loyer suffisament consistant, qui ne correspond pas à la
+				valeur locative, peut aussi conduire à l'annulation du contrat ---
+				\jurisCA{Paris}{28/01/2016}, AJDI 2016 p. 425. ; \jurisCourDeCas[%
+				13-26291]{\civTrois*}{24/03/2015}}.
+		\end{enumerate}
+
+	Ce contrat est à distinguer des conventions d’hébergement et de fourniture de
+		prestation de services contrat hotelier ou contrat d’entreprise. Il y a
+		beaucoups de \JP à ce sujet, par exemple à propos de la location de longue
+		durée d'une chambre d'hôtel.
+
+	Il est également à distinguer des conventions génératrices de droits réels ---
+		en particulier : bail réel solidaire, bail emphythéotique et bail à
+			construction --- car le contrat de bail est un droit \textbf{personnel}.
+
+	\paragraph{Le différentes catégories de baux civils} Les grandes catégories de
+		baux qui relèvent de la dénomination des \enquote{baux civils} sont :
+		\begin{itemize}
+			\item les baux de locaux loués nus à usage d’habitation ou mixte
+				(évolution législative 1948, 1982, 1986, 1989, 2014, 2018) ;
+			\item les baux de locaux loués meublés à usage d’habitation ;
+			\item les baux de locaux à usage professionnel ;
+			\item les baux ruraux ;
+			\item les baux du secteur libre.
+		\end{itemize}
+
+	\paragraph{L'application exclusive aux baux du secteur libre} Ces baux civils
+		sont des contrats qui peuvent être exclusivement soumis aux dispositions du
+		\cciv\ --- non seulement le droit des contrats mais également le
+		\enquote{droit spécial des baux} --- lorsqu'ils font partis de ce que l'on
+		appelle le \enquote{secteur libre.}
+
+		Le baux du secteur libre sont pour l'essentiels ceux listés ci-après :
+		\begin{itemize}
+			\item baux de résidences secondaires ;
+			\item baux de locaux accessoires ;
+			\item logements de fonction\footnote{Il pourrait paraitre surprenant de
+				qualifier ce type de contrat de bail. Ces contrats mettant à
+				disposition un logement dans l'exercice d'une fonction ne sont pas
+				tous qualifiés de bail (cf. \hl{On en reparlera tout à l'heure}). Un
+				logement de fonction peut être mis à disposition en lien étroit avec
+				l'exercice d'une fonction et ne pas présenter les caractéristiques du
+				contrat de bail et en conséquence ne pas pouvoir être qualifié de
+				\enquote{bail}. Dans ce cas ce sera une convention d'occupation
+				précaire. Tout dépendra du point de savoir si les deux parties ont
+				entendus faire de cette convention de mise à disposition d'un logement
+				un contrat autonome par rapport au contrat qui gouverne l'exercice des
+				fonctions du bénéficiaire du logement. \jurisCourDeCas[16-15743]{
+				\civTrois*}{22/06/2017}} ;
+			\item baux consentis a des personnes pour leur activité
+				economique\footnote{Attention : il ne s'agit pas ici d'une activité
+				commerciale ou d'une activité libérale} ;
+			\item baux de terrains nus a usage non agricole.
+		\end{itemize}
+
+		Pour tous ces baux, il n'existe pas de réglementation impérative.
+
+	\paragraph{L'application supplétive aux baux du secteur réglementé} Bon nombre
+		de baux, qui sont soumis à des reglementations particulières, se voient
+		appliquer les règles des baux civils, de manière supplétive.
+
+\section{Le droit commun des baux civils}
+
+	Le droit commun des baux doit être appréhendé en lien avec le droit commun
+		des contrats, puisque les baux sont des contrats.
+
+	\paragraph{Effet de la réforme des obligations de 2016} L'ordonnance \no 2016-
+		131 du \printdate{10/02/2016}, réformée par la loi \no 2018-287 du
+		\printdate{20/04/2018} de ratification, concerne donc le droit des baux et
+		peut influencer le régime de droit commun des baux civils.
+	Il fut donc concerné par la polémique sur la question de savoir comment ce
+		droit s'applique dans le temps, notamment en ce qui concerne les baux
+		\enquote{loi de 89}.
+
+	La question se posait notamment de savoir si ce nouveau droit s'appliquait aux
+		contrats en cours, et plus particulièrement aux effets qui se produisent
+		postérieurement à l'entrée de la loi nouvelle mais qui trouvent leur cause
+		dans un contrat ou une situation qui est antérieure à celle-ci.
+
+	Après un avis de la \CourDeCas du \printdate{16/02/2015}, \no 14-70011,
+		plaidant pour application immédiate de la loi nouvelle aux contrats en cours
+		s’agissant des effets légaux du contrat, appuyé par un arrêt indiquant que
+		la jurisprudence lit le droit à la lumière de \enquote{l’évolution du droit
+		des obligations résultant de l’ordonnance \no 2016-131 du
+		\printdate{10/02/2016}\footnote{\jurisCourDeCas[15-20411]{\chMixte}{
+		24/02/2017}}}, la loi de ratification du \printdate{20/04/2018} a modifié
+		l’article 9 de l'ordonnance du \printdate{10/02/2016} en prévoyant que
+		\enquote{les contrats conclus avant cette date demeurent soumis à la loi
+		ancienne \emph{y compris pour leurs effets légaux et pour les dispositions
+		d'ordre public}.}
+
+	Cela a été logiquement confirmé par la \civTrois de la \CourDeCas dans son
+		arrêt \no 18-20854 du \printdate{19/12/2019}.
+
+	La loi nouvelle s'applique donc aux contrats conclus à compter du
+		\printdate{1/10/2016} (ou du \printdate{1/10/2018}) sauf en ce qui concerne
+		les règles interprétatives.
+
+	\paragraph{Contrat d’adhesion} Il s'impose un \hl{clin d'oeil} au contrat
+		d'adhésion qui, bien qu'existant préalablement la réforme de 2016, a été
+		consacré par celle-ci en lui donnant une définition précise.
+
+	L'\articleDu{1110 al. 2}{\cciv} stipule que \enquote{le contrat d'adhésion
+		est celui qui comporte un ensemble de clauses non négociables, déterminées
+		à l'avance par l'une des parties.}
+
+	Un contrat de bail peut souvent répondre à cette définition dès lors que le
+		preneur n'est pas en mesure de discuter des clauses essentielles du
+		contrat.
+
+	Cette catégorisation en un contrat d'adhésion n'a d'interêt que dans le cas
+		où il n'y a pas de réglementation d'ordre publique. En effet, les
+		conséquences à cette qualification sont inapplicable aux dispositions
+		d’ordre publique.
+
+	Cette distinction ne présente donc un interêt que pour les baux du secteur
+		libre.
+	Dans ce cas, en application de l'article 1171 nouveau, qui prévoit que
+		\enquote{dans un contrat d'adhésion, \emph{toute clause non négociable,
+		déterminée à l'avance par l'une des parties}, qui crée un déséquilibre
+		significatif entre les droits et obligations des parties au contrat est
+		réputée non écrite}, s'il y a appréciation d'un déséquilibre significatif
+		qui ne porte ni sur l'objet principal du contrat ni sur l'adéquation du
+		prix à la prestation, il sera possible d'écarter les clauses incriminées.
+
+	On notera que le champ d'application de cet article 1171 est limité car il
+		ne s'appliquera que là où il n'y a pas d'autre réglmentation pouvant gérer
+		les rapports entre les parties.
+
+	En effet, l'article 1105 nouveau rappelle que le spécial déroge au général,
+		et permet de considérer que dans les rapports entre un professionel
+		bailleur et un particulier locataire c'est le droit de la consommation qui
+		s'appliquera, et donc les dispositions propres à celui-ci concernant la
+		lésion\footnote{\ArticleDu[L]{212-1}{\cconsom} issu de l’ordonnance du
+		\printdate{14/03/2016}}, ou qu'entre professionels c'est le code de la
+		concurrence qui trouvera à s'appliquer\footnote{Le plus simple est de faire
+		déclarer à chaque partie qu'elle a été en mesure de négocier les termes du
+		contrat et permettre ainsi d'éviter tout débat quant à la qualification du
+		contrat en contra d'adhésion soumis à l'article 1171 nouveau du Code civil.
+
+		Un exemple d’application possible du texte est donné par
+			\jurisCourDeCas[14-25523]{\civTrois*}{17/12/2015} : \enquote{la clause qui
+			fait peser sur le locataire la quasi totalité des dépenses incombant
+			normalement au bailleur et dispense sans contrepartie le bailleur de toute
+			participation aux charges qui lui incombent normalement en sa qualité de
+			propriétaire, a pour effet de créer, au détriment du consommateur, un
+			déséquilibre significatif entre les droits et obligations des parties au
+			contrat.}
+
+		Depuis la loi Alur \no 2014-366 du \printdate{24/03/2014}, qui a réformé la
+			loi de 89, la solution est applicable pour les dispositions non prévues
+			dans les contrats types au contenu impératif, sous réserve que le contrat
+			soit entre deux particuliers.}.
+
+	\begin{quote}
+		\enquote{les contrats, qu'ils aient ou non une dénomination propre, sont
+			soumis à des règles générales, qui sont l'objet du présent sous titre.
+
+		Les règles particulières à certains contrats sont établies dans les
+			dispositions propres à chacun d'eux.
+
+		Les règles générales s'appliquent sous réserve de ces règles
+			particulières.}
+	\end{quote}
+
+	\subsection{Formation du contrat de bail}
+
+		Elle est soumise au droit commun des contrats\footnote{
+			\ArticlesDuEtSuivants{1101}{\cciv}} mais doit également respecter des
+			exigences qui propres au contrat de bail.
+
+		Ces exigences propres concernent tout autant les parties que l’objet de
+			leurs obligations\footnote{Ce que l'on appelle depuis l'ordonnance : le
+			contenu du contrat}, qui doit être licite et certain.
+
+		\subsubsection{Les parties au contrat}
+
+			\paragraph{Consentement} Comme pour tout contrat, il est indispensable que
+				chaque partie aie pu exprimer un consentement éclairé.
+
+				\subparagraph{Objet} Le consentement doit se rencontrer relativement à
+					la chose louée : quel bien est mis à la disposition du locataire par
+					le bailleur ? Il faut que cet objet soit déterminé, sa durée doit être
+					précisée\footnote{Il s'agit ici de définir cette durée, qui peut être
+					\enquote{indeterminée.} Exception pour le bail judiciaire en cas de
+					divorce : la durée est fixée par le juge.} ainsi que la contre-partie
+					du locataire \cad le loyer.
+
+				\subparagraph{Caractéristiques} Le consentement doit exister et être
+					exempt de vices, notamment :
+					\begin{itemize}
+						\item erreur sur la personne --- puisque le contrat est conclu
+							\emph{intuitus personae},
+						\item réticence dolosive comme un situation du locataire falsifiée
+							--- faux bulletins de paie,
+						\item le vice de violence\footnote{Le nouvel article 1143 du \cciv
+							précise : \newline
+							\enquote{Il y a également violence lorsqu’une partie abusant de
+							l’état de dépendance dans lequel se trouve son cocontractant
+							\emph{à son égard} obtient de lui un engagement qu’il n’aurait pas
+							souscrit en l’absence d’une telle contrainte et en tire un
+							avantage manifestement excessif}}, en particulier lorsque l'un des
+							cocontractant est en situation de dépendance de l'autre par
+							ailleurs (ex. travail).
+					\end{itemize}
+
+				\subparagraph{Forme du consentement} Le consentement peut être exprimé
+					librement, le contrat de bail est un contrat par nature
+					consensuel\footnote{\ArticleDu{1714}{\cciv}} : l'écrit n'est pas
+					indispensable à la validité mais il est exigé à titre de preuve.
+
+				Il existe cependant une petite exception concernant les baux de plus de
+					12 ans, dont l'\articleDu{710-1}{\cciv} exige la publication à la
+					publicité foncière --- ce qui suppose l'existence d'un acte
+					authentique. A défaut il y a inopposabilité aux tiers pour la période
+					excédant les 12 ans\footnote{\jurisCourDeCas[05-10794]{\civTrois*%
+					}{7/03/2007}}.
+
+				\begin{focus}{Preuve du bail verbal}
+
+					\textbf{Existence du consentement} La preuve de l'existence même du
+						contrat de bail se fera différemment selon que le contrat a reçu un
+						début d'execution ou non.
+					Si le bail a reçu un début d’execution, on pourra apporter la preuve
+						de son existence par tout moyen.
+					Cela peut être par le biais de quittance, par témoignage, par échange
+						de courriel, \etc
+					La \JP est relativement exigente s'agissant de cette preuve, et il a
+						été jugé que le simple fait que des virement aient été fait ne
+						suffisez pas à caractériser l'existence d'un contrat de
+						bail\footnote{\jurisCA{Paris}{11/05/2007} : un local mis à
+						disposition par une grand-mère à son petit-fils, en l'abscence de
+						quittance de loyer et considérant que les transferts financiers
+						pouvaient être expliqués par d'autres raisons.}.
+					Si le bail n'a pas reçu de début d'execution, la preuve par serment
+						déféré à celui qui nie le bail\footnote{\ArticleDu{1715}{\cciv}} est
+						le seul moyen admis par le \cciv pour établir l'existence du bail.
+					La preuve du commencement d’exécution peut, par contre, être établie
+						par tous moyens.
+
+					\textbf{Montant du loyer} Lorsque le bail a reçu un début
+						d’exécution la preuve du montant du loyer se fait uniquement par
+						quittances, serment du bailleur ou estimation par expert.
+					Ces règles sont d’\OP, et le juge ne peut fixer le loyer en fonction
+						d’autres éléments.
+
+					\textbf{Durée} En l'absence d'écrit, il est considéré que le bail est
+						à durée indéterminée\footnote{Avec l'inconvénient déjà évoqué de la
+						possibilité pour chacune des parties de mettre fin au contrat à tout
+						moment, sous réserve d'un préavis raisonnable.} --- en l’absence de
+						règles d’ordre public contraires\footnote{Par exemple : un bail
+						soumis à la loi de 89 sera d'une durée de trois ans ou de six ans,
+						suivant la qualité du bailleur.}.
+
+					\medskip L'abscence d'écrit présente un inconvénient majeur en ce
+						sens qu'elle ne permet pas de prévoir des clauses d'aménagements des
+						obligations réciproques des parties.
+					Par exemple, s'il n'y a pas de bail écrit, il ne sera pas possible
+						d'envisager de révision du loyer --- peu importe que le bail soit
+						soumis à une réglementation d'\OP ou non.
+				\end{focus}
+
+			\paragraph{Capacité}
+
+				S'agissant de la capacité, on retrouve bien évidemment le droit commun :
+					toute partie doit être capable de conclure un contrat, et donc capacité d'exercice et capacité de jouissance.
+
+				Cette question de la capacité présente des particularités tant pour le
+					bailleur que pour le preneur.
+
+				\subparagraph{Capacité du bailleur}
+
+					Par nature, le bail est un acte d’administration\footnote{Mais
+						l'\articleDu{504}{\cciv} encadre les baux consentis par le tuteur},
+						mais ce principe souffre d'exception et un bail sera considéré comme
+						un acte de disposition si sa durée supérieure à 9 ans ou s'il s'agit
+						d'un bail rural ou commercial.
+					En effet, dans ces deux dernières hypothèses, on a considéré que les
+						obligations qui incombent au bailleurs sont tellement lourdes --- il
+						doit maintenir le locataire en jouissance tant que celui remplie ses
+						obligations.
+
+				\subparagraph{Capacité du preneur}
+
+					Du coté du preneur, c'est également un acte d’administration --- sans difficulté particulière.
+
+					On relève toutefois certaines incapacités de jouissance lorsque le
+						preneur est dans certaines situations --- en vue de protéger le
+						bailleur --- par exemple :
+						\begin{itemize}
+							\item l'\articleDu{508}{\cciv} interdit au tuteur de devenir
+								locataire des biens de son pupille --- sauf à obtenir une autorisation prélable du juge ou du conseil de famille ;
+							\item l'\articleDu[L]{116-4}{\casf} frappe d'une incapacité de
+								prendre à bail le personnel des établissements qui recoivent des
+								personnes agées ou d'un trouble psychatrique les biens des ses
+								personnes.
+						\end{itemize}
+
+			\paragraph{Pouvoir}
+
+				\subparagraph{Pouvoir du bailleur} Le bailleur doit avoir le pouvoir de
+					conclure le contrat de bail, ce qui suppose au minimum qu'il ait la
+					jouissance du bien objet du contrat de bail : soit qu'il en soit le
+					propriétaire, soit qu'il en ait l'usufruit, soit parce qu'il s'est vu
+					reconnaitre un droit de jouissance avec la faculté de sous-location.
+
+					\begin{enumerate}
+						\item Le \textbf{bailleur non propriétaire} n'est autorisé à
+							conclure un contrat de bail qui pourra être opposé au propriétaire
+							que dans la mesure cela lui est autorisé.
+						L'\articleDu{1717}{\cciv} pose le principe de la faculté de sous
+							location, sous réserve que cette faculté n'ai pas été interdite
+							--- soit par la  réglementation, soit par la convention entre les
+							parties.
+
+						\smallbreak Lorsque la sous-location est interdite, soit par la loi
+							soit par la convention entre les parties, et qu'elle a quand même
+							lieu, cela permet au bailleur d'agir en résiliation, car la sous-
+							location constitue alors une faute de la part du preneur.
+						La question du sort des loyers perçu par le preneur dans ce cas et
+							plus largement le sort des fruits a été reposée assez largement
+							ces dernières années avec l'essort des plateformes Internet de
+							location saisonnière.
+						Il a été ainsi jugé que le bailleur propriétaire qui avait découvert
+							que son locataire avait sous-loué via Airbnb pouvait réclamer la
+							restitution des sous-loyers\footnote{\jurisCourDeCas[18-
+							20727]{\civTrois}{12/09/2019}}.
+
+						\smallbreak Par ailleurs, la location de la chose d’autrui constitue
+							une infraction pénale.
+						L'\articleDu{313-6-1}{\cpen} prévoit en effet que :
+							\begin{quote}
+								\enquote{
+									Le fait de mettre à disposition d'un tiers, en vue qu'il y
+									établisse son habitation moyennant le versement d'une
+									contribution ou la fourniture de tout avantage en nature,
+									un bien immobilier appartenant à autrui, sans être en mesure
+									de justifier de l'autorisation du propriétaire ou de celle du
+									titulaire du droit d'usage de ce bien, est puni d'un an
+									d'emprisonnement et de \nombre{15000} euros d'amende.
+								}
+							\end{quote}
+
+						\item Lorsque le droit de propriété est démembré, le \NP ne peut
+							revetir la qualité de bailleur, puisqu'il ne dispose plus de la
+							jouissance du bien et ne peut donc la conférer à qui que ce soit, et seul l'usufruitier peut donner le bien à bail.
+						L'\articleDu{595}{\cciv} pose expressement le principe de la liberté
+							pour le \textbf{bailleur usufruitier} de donner à bail.
+
+						\smallbreak Il peut cependant arriver que les particularités d'un
+							contrat de bail imposent l'intervention du \NP, en particulier en
+							ce qui concerne les baux ruraux et les baux commerciaux.
+							\begin{enumerate}
+								\item Les baux ruraux et commerciaux nécessitent l'accord
+									préalable du \NP\ --- ou à défaut, dans le cas où le refus du
+									propriétaire ne serait pas justifié, par autorisation
+									judiciaire\footnote{\ArticleDu{595 al. 4}{\cciv}} --- à peine
+									de nullité.
+
+								L'objet est ici encore une fois de protéger le \NP des
+									conséquences de la protection particulière dont bénéficient les locataires de ces types de baux et notamment la quasi impossibilité pour le \NP de mettre fin à ce contrat de bail.
+
+								\item Pour les autres baux, la question de la liberté pour
+									l'usufruitier de donner à bail dépend de la durée du contrat envisagé :
+								\begin{itemize}
+									\item Lorsque la durée du bail est de plus de \textbf{9 ans}
+										l'autorisation du \NP est requise pour que le bail lui soit opposable au moment de la reconstitution de la pleine propriété.
+									A défaut, l'\articleDu{595 al. 2}{\cciv} prévoit que le bail
+										ne lui sera opposable que pour la période de 9 ans en cours
+										au jour de la fin de l’usufruit.
+
+									\item Lorsque le bail est d’une durée au plus égale à 9 ans,
+										ce bail est opposable au \NP sans accord préalable
+										sauf\footnote{Ces cas s'apparentent à des cas de fraude.} :
+										\begin{itemize}
+											\item bail rural conclu ou renouvelé plus de 3 ans avant
+												expiration du bail courant ;
+
+											\item bail d’habitation conclu ou renouvelé plus de 2 ans
+												avant expiration du bail courant.
+										\end{itemize}
+								\end{itemize}
+							\end{enumerate}
+
+						\item Lorsque l'on a une indivision, les indivisaires sont en
+							principes soumis à la règle de l'unanimité.
+						Il y a des exceptions, et l'\articleDu{815-3}{\cciv} prévoit
+							notamment qu'un ou plusieurs indivisaires titulaires d'au moins
+							deux tiers des droits indivis peuven accomplir des actes
+							d'administration sans avoir besoin de l'accord des autres
+							indivisaires.
+						Cette règle ne s'impose qu'en abscence de mandat, qui peut être
+							tacite\footnote{La \JP a reconnu qu'un indivisaire qui a agi au vu
+							et au su des autres indivisaires ai reçu de manière tacite un
+							mandat.}
+						Concernant le \textbf{bailleur indivisaire},
+							\begin{itemize}
+								\item \textbf{A défaut de convention d’indivision} en
+									conjonction des \articlesDuEtSuivants{1873-1}{\cciv} et de
+									l'\articleDu{815-3}{\cciv}, une décision à la majorité des
+									\sfrac{2}{3} des droits indivis est possible s'il s'agit d'un acte d’administration.
+
+								Cependant les autres indivisaires doivent être informés,
+									à peine d’inopposabilité du bail.
+
+								\item \textbf{Si acte de disposition} Il y a nécessité d'une
+									décision unanime, la théorie du mandat tacite ne pouvant
+									trouver alors à s'appliquer.
+								Il est bien sûr possible de disposer d'un mandant spécial
+									(écrit).
+
+								L'\articleDu{815-5-1}{\cciv} permet à un, ou plusieurs,
+									indivisaire qui détient \sfrac{2}{3} des droits indivis de
+									conclure un contrat relevant des actes de dispositions, à
+									condition du respect d'une procédure requérant une convention
+									notarié et une homologuation par le juge.
+								En pratique, de part sa lourdeur, cette procédure est peu
+									utilisée, d'autant qu'il existe la possibilité de saisir le juge directement en cas de refus ou de silence des autres indivisaires (Cf. \ref{cciv:815-4et5}).
+
+								\item \textbf{En présence d’un indivisaire hors d’état de manifester sa volonté}\label{cciv:815-4et5} une habilitation judiciaire possible aux termes des \articlesCodifies{815-4} et \mbox{815-5} du \cciv.
+							\end{itemize}
+
+							\smallbreak Un bail consenti par un indivisaire sans l’accord des autres est inopposable et non pas nul\footnote{C'est le cas d'un bail de la chose d’autrui}.
+
+							\smallbreak L’indivision bailleresse. Une indivision n'a pas de personnalité juridique. Le bail conclu au nom d’une indivision, dépourvue de personnalité juridique, est nul de nullité absolue.
+
+							\smallbreak Un co-indivisaire peut se faire consentir un bail sur la chose indivise --- à distinguer du droit de jouissance exclusif qui oblige au versement d’une indemnité à l’indivision\footnote{\ArticleDu{815-9 al. 2}{\cciv}}.
+
+							Dans ce cas un écrit s'impose pour éviter toutes les difficultés que cette situation engendre en matière de preuve.
+
+							\smallbreak Lorsque l'indivision est organisée, le gérant dispose des pouvoirs attribués à chaque époux sur les biens communs\footnote{\articleDu{1873-6}{\cciv}}.
+
+							\jurisCourDeCas*[16-13063]{\civTrois}{16/03/2017}
+
+						\item Lorsque le \textbf{bailleur est marié}, il faut distinguer selon le régime matrimonial.
+						Dans le régime de la séparation de bien, si le bien loué est un bien personnel, propre, \articleDu{1425}{\cciv}
+
+							Si l’immeuble est un bien propre liberté sauf art 215 al 3 CC
+
+							Si l’immeuble est un bien commun
+							\begin{itemize}
+								\item art 1425 CC accord des deux époux pour baux ruraux et
+								commerciaux
+
+								\item art 595 CC pour les autres baux cf usufruitier
+							\end{itemize}
+					\end{enumerate}
+
+					\begin{focus}{Saisie immobiliere et bail}
+
+						Principe art L 312 4 CPCE « Les baux consentis par le débiteur
+						après l'acte de saisie sont, quelle que soit leur durée,
+						inopposables au créancier poursuivant comme à l'acquéreur La
+						preuve de l'antériorité du bail peut être faite par tout moyen »
+
+						Civ 2 27 févr 2020 n 18 19174 « la délivrance d'un
+						commandement valant saisie immobilière n'interdit pas la
+						conclusion d'un bail ou la reconduction tacite d'un bail
+						antérieurement conclu, et que le bail, même conclu après la
+						publication d'un tel commandement est opposable à
+						l'adjudicataire qui en a eu connaissance avant l'adjudication »
+
+						cf art 1743 C civ
+
+					\end{focus}
+
+				\subparagraph{Pouvoirs du preneur}
+
+					Acte d’administration
+
+					co titularité art 1751 CC
+
+					colocation qualité de locataire de chacun des co
+					preneurs définition du bail loi ALUR du 24 mars 2014
+					art 8 nouv Loi du 6 07 1989 « location d'un même
+					logement par plusieurs locataires constituant leur
+					résidence principale et formalisée par la conclusion d'un
+					contrat unique ou de plusieurs contrats entre les
+					locataires et le bailleur »
+
+					\begin{focus}{Colocation}
+						Solidarité des co locataires si clause en ce sens
+
+						Limite loi 6 07 1989 en cas de congé libération immédiate si nouveau locataire ou dans les 6 mois en l’absence de nouveau locataire en presence d’une clause de solidarité
+					\end{focus}
+
+		\subsubsection{Le contenu du contrat de bail}
+
+			\paragraph{Détermination du bien loué}
+
+				\subparagraph{Bien objet du bail}
+
+					Tout ou partie de la propriété d’un immeuble (emplacement de stationnement local couvert
+
+					Limites :
+					\begin{itemize}
+						\item bien du domaine public
+
+						\item droits réels ayant un caractère personnel (droit d’usage
+						et d’habitation art. 631 CC)
+
+						\item immeuble insalubres ou indécents , immmeubles divisés
+						: L 111 6 1 CCH et s. + L 634 1 et s. CCH + L 1331 22
+						et s. CSP
+					\end{itemize}
+
+					% Diapo n°42
+					L’indivisibilité de la chose objet du bail cesse à son
+					expiration
+
+					Biens meubles objet du contrat de location
+					immobilière indivisibilité
+					% Fin de la diapo n°42
+
+					\begin{focus}{Bien objet du bail division}
+
+						Interdiction de divisions de locaux indécents cf L 111 6 1
+						CCH
+
+						Une autorisation de travaux en vue de créer plusieurs
+						locaux d’habitation peut être imposée par décision de l’EPCI
+						ou du CM dans les zones d’habitat dégradé contrôle des
+						normes de décence cf L 111 6 1 1 CCH) et dans les zones
+						U ou AU contrôle des proportions et tailles de logement cf
+						PLU cf L 111 6 1 2 CCH)
+
+						Autorisation de division procédure art. L 111 6 1 3 CCH :
+						\begin{itemize}
+							\item Demande suivant formes fixées par arrêté
+
+							\item Décision notifiée dans les 15 jours de la réception de la
+							demande Le défaut de réponse dans le délai de quinze jours
+							vaut autorisation
+
+							\item Le défaut d'autorisation de division est sans effet sur le bail
+
+							\item Préfet peut ordonner le paiement d'une amende au plus
+							égale à 15 000 En cas de nouveau manquement dans un
+							délai de trois ans le montant maximal de cette amende est
+							porté à 25 000 au profit de l’ANAH
+						\end{itemize}
+					\end{focus}
+
+				\subparagraph{Déclaration de mise en location}
+
+					Zones délimitées par l’EPCI ou le CM (art L 634 1 CCH)
+
+					Délimitation des catégories et caractéristiques des logements
+					concernés
+
+					Déclaration dans les 15 jours suivant la conclusion du contrat
+					de location (cf arrêté du 27 mars 2017
+
+					Déclaration renouvelée à chaque nouvelle mise en location
+
+					L'absence de déclaration est sans effet sur le bail
+
+					Le bénéfice du paiement en tiers payant des aides
+					personnelles au logement est subordonné à la production du
+					récépissé de la déclaration de mise en location
+
+					\begin{focus}{Sanction du non respect de l’obligation de déclaration}
+						Amende au plus égale à 5 000 le produit en est
+						intégralement versé à l'Agence nationale de l'habitat
+
+						L'amende prononcée par le Préfet est proportionnée à la
+						gravité des manquements constatés relatifs aux obligations
+						de déclaration et ne peut être prononcée plus d'un an à
+						compter de la constatation des manquements
+					\end{focus}
+
+				\subparagraph{Autorisation de mise en location} art. L635 1 et s. CCH
+
+					L’EPCI ou la CM peut délimiter des zones soumises à
+					autorisation préalable de mise en location sur les territoires
+					présentant une proportion importante d'habitat dégradé
+					suivant modalités fixées par délibération
+
+					L’autorisation peut être refusée ou soumise à conditions
+					lorsque le logement est susceptible de porter atteinte à la
+					sécurité des occupants et à la salubrité publique
+					(prescription de travaux
+
+					Délai d’instruction 1 mois Le défaut de réponse
+					vaut autorisation préalable de mise en location
+
+					L'autorisation préalable de mise en location doit être
+					renouvelée à chaque nouvelle mise en location
+
+					Cette autorisation doit être jointe au contrat de bail
+					à chaque nouvelle mise en location ou relocation
+
+					\begin{focus}{Sanction}
+
+						Amende au plus égale à 5 000 En cas de
+						nouveau manquement dans un délai de trois ans le
+						montant maximal de cette amende est porté à 15
+						000
+
+						L’amende prononcé par le Préfet profite à l’ANAH
+
+						L'amende est proportionnée à la gravité des
+						manquements constatés et ne peut être prononcée
+						plus d'un an à compter de la constatation des
+						manquements
+					\end{focus}
+
+			\paragraph{Fixation du loyer}
+
+				Prix du bail à distinguer des charges accessoires
+
+				Prix déterminé ou déterminable et sérieux (non vil
+
+				Loyer en nature possible limites
+
+				Encadrement des loyers pour les locaux à usage
+				d’habitation (L 6 07 1989 art 17 à 18 Art 18
+
+				Indexation (L 112 1 et s. CMF)
+
+			\paragraph{Durée du bail}
+
+				Principe liberté bail à durée déterminée ou
+				indéterminée
+
+				Limite art 1709 CC prohibition des baux
+				perpétuels ( NA)(cf art 1210 CC)
+
+				Reconduction tacite ou renouvellement poursuite
+				du bail qui devient à durée indéterminée sauf
+				statut particulier cf art 1214 et 1215 CC) à
+				distinguer de la prorogation cf art 1213 CC)
+
+
+	\subsection{Exécution du contrat de bail}
+
+		Articles 1719 et s. CC
+
+		Règles supplétives tant droits et obligations du
+		preneur que du bailleur
+
+		\subsubsection{Droits et obligations du preneur}
+
+		article 1728 CC
+		\begin{enumerate}
+			\item Droits et obligations inhérentes à l’usage du bien
+			\begin{itemize}
+				\item Droit d’user de la chose louée raisonnablement
+
+				\item Obligation d’utiliser le bien conformément à sa
+				destination
+			\end{itemize}
+
+			\item Obligations financières
+
+			\item Obligation aux réparations locatives et obligation de
+			restitution
+		\end{enumerate}
+
+		\paragraph{Droits et obligations inhérentes à l’usage du bien}
+
+			\subparagraph{Jouissance raisonnable}
+
+				Abus de jouissance fait d’user de la chose louée
+				dans des conditions anormales ou excessives
+				emportant une dépréciation de la chose ou une gêne
+				pour le bailleur ou les tiers
+
+				Le preneur est responsable des pertes et
+				dégradations survenant pendant la durée du bail (art
+				1732 CCC) de son fait et de celui des « personne de sa
+				maison ou de ses sous locataires » (art 1735 CC)
+
+				Présence d’animaux article 10 loi n 70 598 du
+				9 07 1970
+
+			\subparagraph{Respect de la destination du bien loué}
+
+				Pas de changement de destination sans accord du bailleur
+
+				Si destination mixte simple faculté
+
+				Domiciliation des entreprises L 123 10 et L 123
+				11 du C comm n’entraîne pas de changement
+				d’affectation des lieux loués
+
+		\paragraph{Obligations financières}
+
+			\subparagraph{Loyer}
+				Paiement des loyers
+
+				\begin{itemize}
+					\item Modalités ( époque, lieu)
+						\begin{itemize}
+							\item époque suivant les usages
+
+							\item Lieu
+								\begin{itemize}
+									\item Principe art 1342 6 CC loyer quérable
+
+									\item Si loyer stipulé portable le bailleur n’a pas à en réclamer le paiement
+								\end{itemize}
+						\end{itemize}
+
+					\item Rétention du loyer cause de résiliation du bail sauf impossibilité totale
+					d’utiliser les lieux (exception d’inexécution
+				\end{itemize}
+
+				Retard générateur d’intérêts cf art 1344 1 CC
+
+			\subparagraph{Rétention des loyers jurisprudence}
+
+				Le locataire qui suspend le paiement de ses loyers sans,
+				préalablement, demander en justice l’autorisation de les
+				consigner ne peut pas opposer au bailleur l’exception
+				d’inexécution, même si celui ci ne remplit pas ses
+				obligations
+
+				Le locataire encourt la résiliation de son bail s'il retient le
+				loyer Cass 3 e civ 13 7 2010 n 09 67999
+
+				Seule exception : impossibilité absolue d'utiliser les lieux
+				(Cass. 3e civ. 5 10 2017 n 16 19614)
+
+			\subparagraph{Charges}
+				Détermination conventionnelle sauf règles impératives
+
+				Modalités cf loyer
+
+				Régularisation suivant prévision du bail sauf bail Loi de
+				1989
+
+		\paragraph{Garanties des obligations du preneur}
+
+			Dépôt de garantie (limitation Loi de 1989 Débiteur de la
+			restitution
+
+			Privilège mobilier art 2332 1 CC sur les meubles
+			garnissant les lieux loués même s’ils n’appartiennent pas
+			au locataire rendu efficace par l’obligation de
+			garnissement cf art 1752 CC
+
+			Cautionnement non étendu aux obligations resultant de la
+			prorogation du bail (art 1740 CC)
+
+			Assurance
+
+			\begin{focus}{Portée de la clause de solidarité}
+				Civ . 3 ème , 12 janv. 2017 n 16 10324
+
+				Tous les copreneurs solidaires sont tenus au
+				paiement des loyers et des charges jusqu’à
+				l’extinction du bail, quelle que soit leur
+				situation personnelle
+
+				La solidarité ne s’étend pas aux indemnités
+				d’occupation, faute de stipulation expresse en
+				ce sens
+			\end{focus}
+
+		\paragraph{Obligation aux réparations locatives}
+
+			En cours de bail et jusqu’à la remise des clés entretenir la chose louée et
+			effectuer les réparations locatives qui s’imposent (art 1720 1754 1755 CC
+			pour les baux L 89 liste limitative D n 87 712 du 26 08 1987
+
+			Cas particulier des travaux d’économie d’énergie (L 1989 art 23 1
+			participation maximale imputable au locataire 50 du montant des travaux
+			bénéficiant au preneur et justifiés Décret n 2009 1439 du 23 11 2009
+
+			Exonération de l’obligation pour les réparations liés à la vétusté ou la force
+			majeure (art 1755 CC)
+
+			Sanction en fin de bail sauf si inexécution des travaux de nature à nuire à la
+			chose louée résiliation
+
+		\paragraph{Obligation de restitution}
+
+			Remise des clés
+
+			Lieux libérés de tous les meubles appartenant au locataire
+			\begin{itemize}
+				\item Remise en état initial des lieux loués (art 555 CC inapplicable
+				constructions ou plantations sur le terrain du bailleur Civ
+				3 1 er juin 2010 n 08 21254
+
+				\item Vétusté à apprécier
+
+				\item Incidence de l’absence d’état des lieux (art 1731 CC
+				présomption de remise d’un bien en bon état de réparation
+			\end{itemize}
+
+		\subsubsection{Droits et obligations du bailleur}
+
+			\begin{enumerate}
+				\item Obligation de délivrance
+				\item Obligation d’entretien
+				\item Obligation de garantie
+			\end{enumerate}
+
+			\paragraph{Obligation de délivrance}
+
+				\subparagraph{Obligation d’information}
+
+					Obligation à contenu variable suivant le bien objet du bail
+					\begin{itemize}
+						\item Bail soumis à la loi du 6/07/1989 : art. 3 1 et 3 3 de la loi
+							\begin{itemize}
+								\item surface habitable
+
+								\item DDT : ERNMT, DPE, CREP, état amiante (cf. décret ) et état des installations
+								intérieures de gaz et d’électricité
+
+								\item Notice d’information Arrêté du 29 mai 2015
+
+								\item Un document comportant l’indication claire et précise des zones de bruit définies
+								par un plan d’exposition au bruit des aérodromes prévu à l’article L. 112 6 du
+								code de l’urbanisme (C. u rb a rt L. 112 11 au 1 er juin 2020)
+							\end{itemize}
+
+						\item Bail à usage d’habitation : DDT, logement décent
+
+						\item Locaux à usage professionnel de plus de 2000 m2 : annexe environnementale (L
+						125 9 1 CE) + amiante
+
+						\item Locaux à usage professionnel de moins de 2000 m2 : DPE + ERNMT + amiante
+					\end{itemize}
+
+				\subparagraph{Obligation de délivrance d’une chose conforme aux prévisions des parties}
+
+					Délivrance conforme aux prévisions des parties local
+					principal et accessoires
+
+					Délivrance suivant les délais convenus
+
+					Logement décent (art 1719 CC)
+
+					Délivrance en bon état de réparation de toutes
+					espèces (art 1720 CC) pas de distinction entre les
+					réparations locatives et les grosses réparations
+
+			\paragraph{Obligation d’entretien}
+				Toutes réparations autres que locatives (grosses réparations
+				vétusté
+
+				Limite : art. 1722 CC : destruction du bien
+				\begin{itemize}
+					\item destruction totale par cas fortuit bail résilié de plein droit
+					sans dédommagement du preneur Si faute de l’une des
+					parties résiliation du bail cf 1741 CC dommages intérêts
+
+					\item destruction partielle option du preneur résiliation du bail
+					ou diminution du loyer
+				\end{itemize}
+
+				Limites conventionnelles texte supplétif
+
+			\paragraph{Obligation de garantie}
+
+				Garantie des vices et défauts art 1721 CC
+				\begin{itemize}
+					\item objet tous vices ou défauts empêchant l’usage de la chose
+					louée interprétation large dès que le vice occasionne un
+					inconvénient sérieux au preneur garantie qui concerne tant
+					la chose louée que ses accessoires
+
+					\item sanction résiliation du bail ou réduction du loyer
+					dommages intérêts
+				\end{itemize}
+
+				Garantie d’éviction du fait personnel du bailleur (art 1719 CC)
+				troubles de droit comme de fait
+
+				Garantie d’éviction du fait des tiers (art 1727 CC) troubles de
+				droit
+
+			\begin{focus}{Faculté de remplacement}
+				Nouvel article 1222 du code civil
+
+				Après mise en demeure, le créancier peut, dans un délai et à
+				un coût raisonnables, faire exécuter lui même l'obligation ou,
+				sur autorisation préalable du juge, détruire ce qui a été fait
+				en violation de celle ci Il peut demander au débiteur le
+				remboursement des sommes engagées à cette fin
+
+				Il peut aussi demander en justice que le débiteur avance les
+				sommes nécessaires à cette exécution ou à cette
+				destruction
+			\end{focus}
+
+			\begin{focus}{Inexécution et réduction du prix}
+				Art 1217 nouveau le créancier insatisfait peut « obtenir une réduction du prix »
+
+				Art 1223 nouveau al 1 « En cas d'exécution imparfaite de la prestation, le créancier peut, après mise en demeure et s'il n'a pas encore payé tout ou partie de la prestation, notifier dans les meilleurs délais au débiteur sa décision d'en réduire de manière proportionnelle le prix
+				 L'acceptation par le débiteur de la décision de réduction de prix du créancier doit être rédigée par écrit »
+
+				Art 1223 nouveau al 2 « Si le créancier a déjà payé, à défaut d'accord
+				entre les parties, il peut demander au juge la réduction de prix »
+			\end{focus}
+
+
+	\subsection{Incidents contractuels}
+
+		\begin{enumerate}
+			\item Extinction du bail art 1741 résiliation arrivée du
+				terme (art 1741 perte de la chose, confusion des
+				qualités de preneur et de propriétaire
+
+			\item Décès d’une partie
+
+			\item Vente du bien loué
+
+			\item Cession de bail
+		\end{enumerate}
+
+		\subsubsection{Extinction du bail}
+
+			\paragraph{Perte de la chose louée}
+
+				Art. 1722 C. civ.
+
+				En cas de perte totale, le bail est résilié de plein droit à
+				la demande de l’une ou l’autre des parties sans que le
+				juge ait de pouvoir d’appréciation
+
+				En cas de perte partielle, seul le locataire, qui bénéficie
+				d’une option, peut demander la résiliation Cass 3 e civ
+				1 2 1995 n 92 21 376
+
+				Question comment caractériser la perte totale
+
+				Cass civ 3 ème 8 mars 2018 n 17 11439
+				Article 1722 C civ doit être assimilée à la
+				destruction en totalité de la chose louée
+				l’impossibilité absolue et définitive d’en user
+				conformément à sa destination ou la nécessité
+				d’effectuer des travaux dont le coût excède sa
+				valeur
+				=)
+				permet au bailleur d’échapper à l’obligation de
+				remise en état
+
+		\subsubsection{Décès d’une partie}
+
+			Principe absence d’incidence (art 1742 CC)
+			transmission aux héritiers
+
+			En droit commun, le décès du preneur entraine la ... intuitu personae
+
+			Dans les baux spécifique il est possible que la loi ne permette pas la transmission
+
+			Exceptions convention contraire, renonciation du
+			bénéficiaire de la transmission, bail loi de 1948 pour les
+			descendants majeurs du locataire
+
+			\paragraph{Transmission du bail}
+
+				Portée de la règle toute transmission à titre gratuit ou onéreux y
+				compris vente par adjudication
+				–
+				Date certaine nécessaire A défaut connaissance du bail par acquéreur
+				ou acceptation de poursuivre en connaissance de cause
+				–
+				Acquéreur subrogé sans rétroactivité dans les droits et obligations du
+				vendeur à l’égard du locataire et de sa caution sauf clause contraire
+				(Ass Plén 6 dec 2004
+				–
+				Sort du dépôt de garantie cas particulier L 1989
+				–
+				Clause dérogatoire valable sauf règles d’\OP
+
+		\subsubsection{La vente du bien loué}
+
+			lorsque le baileur . le \cciv nous indique que cela n'a pas de perturbaton, le contrat s'impose au nouveau popriétaire à la condition que le bail soit authentique ou de date certaine.
+
+			La \JP est allée au-delà dès lors que l'acquéreur avait connaissance ...
+
+			Le contrat de bail ets ainsi couramment joint à l'acte de vente ...
+
+			Le nouveau propriétaire devient tenu des toutes les nouvelles à compter du transfert de pro. Ce ne sont que les fautes commises à compter du ...
+
+			\paragraph{Vente du bien loué L. 1989}
+
+				Limitation du droit pour l’acquéreur d’un bien acquis loué de
+				donner congé Limitation variable suivant motif de congé
+				\begin{itemize}
+					\item Congé pour vente trois ans au moins après la date
+					d’acquisition
+
+					\item Congé pour reprise 2 ans au moins après l’acquisition
+				\end{itemize}
+
+
+			\paragraph{Droit de préemption du locataire}
+
+				Droit de préemption conventionnel pacte de préférence
+
+				Droit de préemption légal.
+				\begin{itemize}
+					\item vente après division
+					\item vente en bloc
+					\item congé donné pour vendre
+				\end{itemize}
+
+				\subparagraph{Droit de préemption art. 10 L. 31 déc. 1975}
+
+					\begin{itemize}
+						\item Locaux concernés locaux à usage d’habitation ou à usage
+						mixte effectivement occupés par le locataire à usage
+						d’habitation quel que soit le bail conclu local principal et
+						locaux accessoires si vente du local principal et acccessoire
+						\item Locaux vendus en bloc ou séparément (à distinguer d’une
+						vente d’un bâtiment dans son entier ou de la totalité des locaux
+						à usage d’habitation ou mixte
+						\item locaux issus d’une première division d’un immeuble entier ou
+						d’une subdivision
+					\end{itemize}
+
+					Nature des droits cédés pleine propriété (Quid si
+					démembrement de propriété ou droits sociaux d’une société
+					d’attribution
+
+					Opérations concernées première vente consécutive à la
+					division de l’immeuble par lots ou à la subdivision de tout ou
+					partie de l’immeuble par lots (à distinguer d’une simple
+					division parcellaire
+
+					Si 1\iere{} vente anéantie (résolution ou annulation) considérée
+					comme jamais intervenue
+
+				\subparagraph{Cas d’exclusion du droit de préemption du locataire}
+
+					Vente à un parent ou allié jusqu’au 4 inclus interprétation stricte
+					exclusion du cas d’une vente à société d’un seul associé parent ou allié
+					jusqu’au 4 degré
+
+					Vente de l’immeuble dans son entier ou ensemble des lots à usage
+					d’habitation ou mixte si première vente de l’immeuble entier puis deuxième
+					vente après division droit de préemption
+
+					Exclusion des opérations de partage et opérations ne constituant pas une
+					vente au sens strict (ex mutation ATG, apport en société
+
+				\subparagraph{Titulaires du droit de préemption}
+
+					Chaque co preneurs et co titulaire du bail (art 1751 CC)
+					ou occupants de bonne foi
+
+					Le droit de préemption ne profit qu’au titulaire qui occupe
+					effectivement les lieux loués exclut les personnes
+					morales et les locataires ayant consenti une sous location
+					totale
+
+					Droit à préemption individuel chaque titulaire doit être
+					traité comme s’il était seul la renonciation de l’un est
+					inopposable aux autres notification à chacun
+
+				\subparagraph{Mise en oeuvre du droit de préemption}
+
+					Notification d’une offre au locataire (LRAR, acte d’huissier ou ou
+					la remise en main propre contre récépissé ou émargement ( CP C ,
+					art. 667)667)(sanction : NR de la
+
+					Contenu :
+					\begin{itemize}
+						\item indication du prix (hors commission d’agence Civ 3 17 déc
+						2008 n 07 15943 et des conditions de la vente tous
+						éléments pouvant déterminer le consentement du locataire
+
+						\item reproduction des 5 premiers alinéa de l’article 10 L 1975 si
+						pluralité de locataires § 1 et 2 art 4 D du 30 06 1977
+					\end{itemize}
+
+				\subparagraph{Notification de l’offre au locataire}
+
+					Auteur propriétaire cas particulier des indivisions et propriété
+					démembrée à considérer ou mandataire disposant d’un mandat
+					spécial acte de disposition)
+
+					Destinataire chaque titulaire du bail ou occupants de bonne foi Si
+					locataire sous tutelle notification à son représentant légal (D
+					1977 art 6 Notification opposable au conjoint si son existence n’a
+					pas été préalablement portée à la connaissance du bailleur
+
+					Durée de validité 2 mois à compter de sa réception délai
+					décompté pour chaque locataire délai préfix
+
+				\subparagraph{Forme et effets de l’acceptation de l’offre}
+
+					Forme LRAR ou forme de portée équivalente
+
+					Délai 2 mois de la réception de la notification
+
+					Destinataire personne émettrice de l’offre
+
+					Contenu acceptation sans équivoque et sans réserve (à défaut
+					refus possibilité d’indiquer que l’acceptation est subordonnée à
+					l’obtention d’un prêt
+
+					Conséquences réalisation de la vente dans les 2 ou 4 mois si prêt) A
+					défaut nullité de l’acceptation du locataire
+
+				\subparagraph{Forme et effets de la renonciation à l’offre}
+
+					Forme manifestation exprès de volonté ou écoulement du
+					délai de 2 mois sans manifestation de volonté ou de 2 4
+					mois sans réalisation de la vente Ne prive pas le locataire
+					de son droit au bail
+
+					Effets la loi ALUR du 24 mars 2014 information de la
+					commune du lieu de situation du bien titulaire d’un droit de
+					prioritée disposition déclarée inconsitutionnelle au
+					11 01 C Const 9 janv 2018 n 2017 683 QPC
+
+				\subparagraph{En l’absence de préemption}
+
+					Le vendeur peut vendre son bien occupé à la personne de
+					son choix aux conditions indiquées dans la notification
+					faite au locataire
+
+					Si vente à des conditions plus avantageuses nouvelle
+					purge du droit de préemption selon les mêmes règles mais
+					avec un délai d’acceptation réduit à 1 mois
+
+					Sanction du non respect de la procédure nullité de la
+					vente
+
+				\subparagraph{Droit de préemption du locataire en cas de vente par adjudication art. 10 II Loi 1975}
+
+					Information du locataire et convocation à l’adjudication cf formes
+					supra, 1 mois au moins avant la date de l’adjudication (D n 77
+					742 du 30 06 1977 art 7
+
+					Notification du jugement d’adjudication entre le 10 et le 15 jour
+					suivant l’adjudication surenchère possible)
+
+					Sanction à défaut de convocation régulière le locataire dispose
+					d’un droit de substitution dans le mois de la date à laquelle il a eu
+					connaissance de l’adjudication sauf si adjudication au profit d’un
+					indivisaire
+
+				\subparagraph{Droit de préemption du locataire et vente en bloc art. 10 1 L. 1975}
+
+					Introduit par la loi Aurillac du 13 juin 2006
+
+					Opérations concernées vente d’un immeuble à usage d’habitation ou
+					mixte en totalité et en une seule fois et vente de la totalité des parts ou
+					actions d’une société d’attribution détenant un tel immeuble
+
+					Conditions cumulatives de l’ouverture du droit de préemption du locataire :
+					\begin{itemize}
+						\item immeuble comportant plus de 5 logements Loi ALUR)
+
+						\item acquéreur ne s’engageant pas à proroger les baux en cours pour 6 ans à compter de l’acte authentique de vente (engagement à insérer dans l’acte à peine de nullité de la vente
+					\end{itemize}
+
+				\subparagraph{Exceptions au droit de préemption du locataire art. 10 1 L. 1975}
+
+					Préalablement à la vente le bailleur communique au maire de la
+					commune du lieu de situation de l’immeuble le prix et les
+					conditions de vente si DPU la DIA remplace cette notification)
+					Permet à la commune de mettre en oeuvre son droit de
+					préemption de l’article L 210 2 C urb
+
+					Notification au locataire cf conditions de forme de l’art 10 L
+					1975 (prix du logement concerné et prix de vente global
+					reproduction des termes de l’article 10 1 I A L 1975 à peine de
+					nullité documents DT et projet de règlement de copropriété
+					si plus de 10 logements informations imposées par accords de
+					1998 2005
+
+				\subparagraph{Suites de la notification}
+
+					Offre de vente valable 4 mois à compter de sa reception
+
+					Silence gardé par le locataire refus
+
+					Si acceptation vente doit être réalisée dans les 2 mois de
+					l’acceptation ou dans les 4 mois si recours à un prêt L’immeuble
+					est alors soumis au régime de la copropriété
+
+					Si refus vente ne peut se faire à des conditions plus avantageuses
+					sauf purge d’un nouveau droit de préemption délai réduit à un
+					mois pour l’acceptation
+
+				\subparagraph{Accords collectifs}
+
+					2 accords collectifs se sont succédés 9 juin 1998 et 16
+					mars 2005
+
+					applicables en cas de mise en vente d’un immeuble de
+					plus de 10 logements avec ou sans congé lorsque le
+					bailleur est une personne morale cf art 41 ter L
+					23 12 1986 sauf SCI entre parents et alliés jusqu’au 4
+					degré inclus
+
+					obligation d’information spécifique des locataires
+					(sanction nullité
+
+				\subparagraph{Congé donné pour vendre droit de préemption}
+
+					loi du 6 juillet 1989
+
+					Art . 15 / art. 11 1
+					=) renvoi
+
+		\subsubsection{Cession de bail}
+
+			\paragraph{Cession du droit au bail}
+
+				Article 1717 Code civil principe d’autorisation sauf
+				convention contraire ou règle d’ordre public contraire (cf
+				sous location)
+
+				Sanction résiliation du bail et inopposabilité de la
+				convention conclu en violation de la clause du bail
+
+			\paragraph{Effet de la cession de bail}
+
+				\subparagraph{Rapports avec le bailleur}
+					transmission intégrale au cessionnaire
+					des droits et obligations en résultant sans novation de débiteur
+					le preneur primitif reste tenu des obligations du bail vis à vis du
+					bailleur
+					En
+					cas de cessions successives le bailleur peut agir contre l’un
+					quelconque des cessionnaires Si clause de solidarité s’impose
+					aux cessionnaires successifs
+
+				\subparagraph{Rapports cédant -- cessionnaire}
+					le cessionnaire dispose d’une
+					action directe contre le bailleur pour obtenir l’exécution de ses
+					obligations nées du bail bailleur peut opposer les exceptions
+					qu’il aurait pu opposer au cédant
+
+			\paragraph{Droit commun des contrats}
+
+				Cession de la qualité de partie au contrat
+
+				Article 1216 al 3 CC «La cession doit être constatée par
+				écrit, à peine de nullité »
+
+				Article 1216 1 CC «Si le cédé y a expressément consenti, la
+				cession de contrat libère le cédant pour l'avenir
+
+				A défaut, et sauf clause contraire, le cédant est tenu
+				solidairement à l'exécution du contrat »
+
+				Article 1216 2 CC « Le cessionnaire peut opposer au cédé les
+				exceptions inhérentes à la dette, telles que la nullité, l'exception
+				d'inexécution, la résolution ou la compensation de dettes connexes Il
+				ne peut lui opposer les exceptions personnelles au cédant Le cédé
+				peut opposer au cessionnaire toutes les exceptions qu'il aurait pu
+				opposer au cédant
+
+				Article 1216 3 CC « Si le cédant n'est pas libéré par le cédé, les
+				sûretés qui ont pu être consenties subsistent Dans le cas contraire,
+				les sûretés consenties par le cédant ou par les tiers ne subsistent
+				qu'avec leur accord
+
+				Si le cédant est libéré, ses codébiteurs solidaires restent tenus
+				déduction faite de sa part dans la dette »
+
+\section{Le droit spécial des baux civils}
+
+	Réglementations d’ordre public
+
+	Baux soumis à la loi du 6 juillet 1989 dite loi Mermaz
+	Baux non soumis à la loi du 6 juillet 1989 dite loi
+	Mermaz
+
+	\subsection{Champ d’application de la loi du 6 juillet 1989}
+
+		\subsubsection{Les locations exclues de la loi du 6 juillet 1989}
+
+			Locations totalement exclues
+			\begin{enumerate}
+				\item locaux à usage professionnel
+				\item locaux à usage rural
+				\item logements foyers
+				\item logements de fonction
+				\item logements meublés touristiques
+				\item contrat de cohabitation intergénérationnelle solidaire
+			\end{enumerate}
+
+
+			Locations partiellement exclues
+			\begin{itemize}
+				\item logements meublés à usage de résidence principale
+				\item b ail mobilité
+				\item ogements du secteur HLM et logements conventionnés
+				\item logements régis par la loi du 1/09/1948
+			\end{itemize}
+
+
+		\subsubsection{Les locations incluses dans le champ d’application de la loi du 6 juillet 1989}
+
+			Locaux compris dans un immeuble construit avant le 1 er sept
+			1948 à usage d’habitation ou professionnel ainsi que les
+			locaux accessoires à ces locaux
+
+			Les occupants de ces logements preneur ou occupant de
+			bonne foi bénéficient du régime jusqu’à la vacance des
+			locaux Exclusion des locataires entrés dans les lieux après le
+			23 déc 1986
+
+			Depuis la loi ENL de 2006 les descendants des occupants ne
+			bénéficient plus du régime de faveur (sauf vie effective depuis
+			un an art 5 L 1948
+
+	\subsection{Régime de la loi du 6 juillet 1989}
+
+		Droit au maintien dans les lieux sauf occupation insuffisante
+		moins de 8 mois au cours d’une année de location)
+
+		Congé pour certains travaux ou pour habiter avec obligation
+		de relogement ( sauf preneur protégé
+
+		Fixation autoritaire du prix des loyers suivant un prix au m 2
+		fixé par voie réglementaire au 1 er juillet de chaque année
+		suivant classement lié aux équipements et au confort
+
+		\subsubsection{Formation du contrat}
+
+		\subsubsection{Obligations des parties en cours de bail}
+
+\pagebreak
+
+\pdfbookmark[0]{Table des matières}{toc}\tableofcontents
+
+\end{document}

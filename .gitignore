@@ -259,9 +259,12 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+<<<<<<< HEAD
 # TeXnicCenter
 *.tps
 
+=======
+>>>>>>> b201a11... Initial commit
 # auto folder when using emacs and auctex
 ./auto/*
 *.el
